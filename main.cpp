@@ -1,14 +1,18 @@
-/*
-This is for the experiment
-*/
+#include<conio.h>
 #include<fstream>
 #include<iomanip>
 #include<iostream>
 #include<cstring>
 #include<cstdlib>
 
+//header files
+#include "admin.h";
+#include "user.h";
+#include "registration_and_login.h";
+
 using namespace std;
-class alogin
+
+/*class alogin
 {
 	string admin;
 	public:
@@ -52,6 +56,7 @@ int alogin::getadpassword()
 		getadpassword();
 	}
 }
+*/
 void allotment_gold(int gc)
 {
     if(gc!=0)
@@ -1083,9 +1088,9 @@ int main()
 {		
 		int i,k,z;
 		a:
-		cout<<"\t\tHOME WORKOUT PROJECT\n"<<endl;
-        cout<<"\t\t\tWELCOME\n";
-		cout<<endl<<"SELECT MODE"<<endl<<"1.User"<<endl<<"2.Admin"<<endl<<"3.Exit\n";
+		cout<<"\t\t********************** Gym & Fitness Management System **********************\n"<<endl;
+        cout<<"\n\t\t\t-----------------------  WELCOME  -----------------------\n";
+		cout<<endl<<"\tSELECT MODE"<<endl<<"\t1.User"<<endl<<"\t2.Admin"<<endl<<"\t3.Exit\n";
 		cin>>i;
 			if(i==1)
             {
@@ -1127,3 +1132,4 @@ int main()
 			}
 		return 0;
 }
+
