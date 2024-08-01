@@ -5,7 +5,7 @@
 #include "DRAWPAGES.h"
 
 
-std::string username, u_pass, u_contact, u_num, log_num, log_pass, day_count, weight;
+std::string username, u_pass, u_contact, u_num, log_num, log_pass, DAYcount, W8, Admin_str, Pw_str, Mem_Del, Admin_E, dis_num;
 int time_slut, Subs_click; 
 
 
@@ -375,47 +375,55 @@ return 1;
 
 //***************************************************************************************
  
-void handleAdminLogin( int x, int y){ 
+int handleAdminLogin( int x, int y){ 
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+
+
  
-  if (isClickInBounds(x, y, 232, 523, 523, 561) ){
-        cleardevice();
+  if (isClickInBounds(x, y, 209, 338, 209+292, 338+45) ){
         
-        drawAdminMenu();
+        
+        captureAdminName(209, 338, 209+292, 338+45, Admin_str);
+        
+        // drawAdminMenu();
         //currentPage = ADMIN_MENU;
       
     }
-    else if(isClickInBounds(x, y, 352, 603, 404, 621)){
-		cleardevice(); 
+    else if(isClickInBounds(x, y, 209, 432, 209+292, 432+45)){
+		
+    	captureAdminPassword( 209, 432, 209+292, 432+45, Pw_str);
     	
-		drawLoginForm();
+		//drawLoginForm();
 		//currentPage = LOGIN_USER; 
     	
 	}
-	
-/*	else if(isClickInBounds(x,y,209, 338, 209+292, 338+45))
-	{ 
-	
-	captureTextInput(240, 340, 480, 380, username);
-    
-    
+	else if(isClickInBounds(x,y, 208, 526, 208+293,526+38)){
+		
+	break;
 	}
-	else if (isClickInBounds(x,y, 209, 432, 209+292, 432+45))
-	{ 
-	
-	 capturePasswordInput(240, 434, 480, 470, password);
-	 
-	}*/ 
+} 
+}
+
 }
 
 
 //*****************************************************************************************************
 
-void handleAdminMenu(int x, int y){ 
+int handleAdminMenu(int x, int y){ 
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
 
 	
 	if(isClickInBounds(x, y, 151, 170, 151+216, 170+216)){ 
 	
-	cleardevice(); 
+	return 1; 
 	
 	//drawAddMember(); 
 	
@@ -425,7 +433,7 @@ void handleAdminMenu(int x, int y){
 	
 	else if(isClickInBounds(x, y, 523, 170, 523+216, 170+216)){ 
 	
-	cleardevice(); 
+	return 2;  
 	
 	//drawAdminRecords(); 
 	
@@ -434,7 +442,7 @@ void handleAdminMenu(int x, int y){
 	}
 	else if(isClickInBounds(x, y, 895, 170, 895+216, 170+216)){ 
 	
-	cleardevice(); 
+	return 5; 
 	
 	//drawDeleteMember(); 
 	
@@ -444,7 +452,7 @@ void handleAdminMenu(int x, int y){
 	
 	else if(isClickInBounds(x,y, 151, 432, 151+216, 432+216)){ 
 	
-	cleardevice(); 
+	return 4; 
 	
 	//drawEditMember(); 
 	
@@ -453,7 +461,7 @@ void handleAdminMenu(int x, int y){
 	}
 	else if(isClickInBounds(x, y, 523, 432, 523+216, 432+216)){ 
 	
-	cleardevice(); 
+	return 3; 
 	
 	//drawSearchRecords(); 
 	
@@ -462,19 +470,90 @@ void handleAdminMenu(int x, int y){
 	}
 	else if(isClickInBounds(x,y, 833, 605, 833+340, 605+42)){ 
 	
-	cleardevice(); 
+	return 6; 
 	
-	drawLoginForm(); 
+	//drawLoginForm(); 
 	
 	//currentPage == LOGIN_USER; 
 	}
-
+} 
 }
+}
+//*****************************************************************************************************
+
+int handleMemberDeleteNum(int x, int y){
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+
+	
+	if(isClickInBounds(x, y, 487, 499, 487+304, 499+64)){ 
+	
+	captureDeleteMemberNum(487, 499, 487+304, 499+64, Mem_Del);
+	
+}
+else if(isClickInBounds(x,y, 523, 588, 523+233, 588+44)){ 
+	
+	break;
+} 
+
+} 
+} 
+} 
+
 
 
 //*****************************************************************************************************
 
+int handleAdminEdit(int x, int y){ 
 
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+
+	
+	if(isClickInBounds(x, y, 487, 499, 487+304, 499+64)){ 
+	
+	captureAdminEdit(487, 499, 487+304, 499+64, Admin_E);
+	
+}
+else if(isClickInBounds(x,y, 523, 588, 523+233, 588+44)){ 
+	
+	break;
+} 
+
+} 
+} 
+} 
+
+//******************************************************************************************************
+
+
+int handleAdminSearch(int x, int y){ 
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+
+	
+	if(isClickInBounds(x, y, 487, 499, 487+304, 499+64)){ 
+	
+	captureAdminSearch(487, 499, 487+304, 499+64, dis_num);
+	
+}
+else if(isClickInBounds(x,y, 523, 588, 523+233, 588+44)){ 
+	
+	break;
+} 
+
+} 
+} 
+} 
+//******************************************************************************************************
 void handleUserEdit(int x, int y){ 
 
 
@@ -495,7 +574,7 @@ void handleDietSuggestion(int x, int y){
 
 if(isClickInBounds(x, y, 633, 292, 633+165, 292+53)){ 
 
-captureDayCountInput(636, 294, 633+165, 292+51, day_count);
+captureDayCountInput(636, 294, 633+165, 292+51, DAYcount);
 	
 //cleardevice(); 
 	
@@ -503,7 +582,7 @@ captureDayCountInput(636, 294, 633+165, 292+51, day_count);
 	
 	else if(isClickInBounds(x, y, 622, 378, 622+188, 378+53)){ 
 	
-captureWeightInput(622, 378, 622+188, 378+53, weight);
+captureWeightInput(622, 378, 622+188, 378+53, W8);
 
 	
 	}
@@ -529,47 +608,76 @@ int handleDietSuggestion2(int x, int y)
             
 
 if(isClickInBounds(x, y, 131, 323, 131+278, 323+278)){ 
+return 1; 	
+}
+	
+else if(isClickInBounds(x, y, 501, 323, 501+278, 323+278)){ 
+return 2;
+}
+ 
+else if(isClickInBounds(x,y, 870, 323, 870+278, 323+278)){ 
+
+return 3; 
+
+}
+
+}
+}
+
+
+}
+
+//*****************************************************************************************************
+
+
+int handleUserRecords(int x, int y) { 
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+            
+            
+if(isClickInBounds(x, y, 928, 551, 928+209, 551+52)){ 
 
 
 return 1; 
 	
 	}
-	
-	else if(isClickInBounds(x, y, 131, 501, 131+278, 501+278)){ 
-	
 
-return 2;
+}
+};
+}
+
+
+//*****************************************************************************************************
+
+void handleEntireScreenClick(int x, int y){ 
+
+while (true) {
+        if (ismouseclick(WM_LBUTTONDOWN)) 
+		{
+            getmouseclick(WM_LBUTTONDOWN, x, y);
+            
+            
+if(isClickInBounds(x, y, 0, 0, 1280, 720)){ 
+
+
+break; 
 	
 	}
- else if(isClickInBounds(x,y, 131, 870, 131+278, 870+278)){ 
- 
- 
-return 3; 
-
- }
 
 }
-}
+};
 
 
 }
-
-//*****************************************************************************************************
-
-
-void handleUserRecords(int x, int y) { 
-
-
-}
-
-
-//*****************************************************************************************************
-
-
 void handleUserQuit(int x, int y){ 
 
 
 }
+
+
 
 
 #endif

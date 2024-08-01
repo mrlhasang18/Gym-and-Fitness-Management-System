@@ -234,4 +234,54 @@ void drawUserQuit(){
 
 }
 
+
+void drawNoUser(){ 
+
+readimagefile("NoUser.jpg",0,0,1280,720); 
+
+}
+
+void drawUserDeleteComplete(){ 
+
+readimagefile("User_Delete.jpg",0,0,1280,720); 
+
+}
+
+void drawDeleteMemberNum(){ 
+
+readimagefile("DeleteMemberNum.jpg", 0,0, 1280, 720);
+
+}
+
+void drawAdminEdit(){ 
+
+readimagefile("Admin_Edit.jpg", 0,0,1280,720); 
+
+
+}
+
+void drawAdminSearch(){ 
+
+readimagefile("Admin_Search.jpg", 0,0,1280,720); 
+ 
+}
+
+void drawConnectivityTrue(){ 
+
+readimagefile("ConnectivityTrue.jpg", 42, 648, 92, 698);
+
+}
+
+void drawConnectivityFalse(){ 
+
+readimagefile("ConnectivityFalse.jpg", 42, 648, 92, 698);
+
+}
+
+void drawFitness1(){ 
+
+readimagefile("Fitness1.jpg", 0, 0, 1280, 720); 
+
+}
+
 #endif

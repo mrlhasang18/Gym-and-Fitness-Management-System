@@ -9,6 +9,8 @@
 #include "CAPTUREINPUTS.h"
 #include "DRAWPAGES.h"
 #include "HANDLECLICKS.h"
+#include "sqlite_connectivity.h"
+#include "diet_database.h"
 
 using namespace std;
 
@@ -50,14 +52,59 @@ void fnmanage();
 
 class alogin
 {
-	string admin;
-	public:
+
+	
+	char admin[10]; 
+	char pw[10];
+	char a[10], p[10]; 
+	
+
+	public:	
+	alogin(){ 
+	
+	strcpy(a, "admin"); 
+	strcpy(p, "hello");
+	
+	}
+
+
 	int adlogin()
 	{
-		cout<<"\n\t\tEnter the admin code: ";
+		int click_x, click_y; 
 		
-		cin>>admin;
-		if(admin=="admin")
+		click_x = 0; 
+		click_y = 0; 
+		
+		cleardevice(); 
+		drawAdminLogin(); 
+		
+		handleAdminLogin(click_x, click_y); 
+		
+		strncpy(admin, Admin_str.c_str(), sizeof(admin) - 1);
+    	admin[sizeof(admin) - 1] = '\0';
+    	
+    	
+    	
+    	strncpy(pw, Pw_str.c_str(), sizeof(pw) - 1);
+    	pw[sizeof(pw) - 1] = '\0';
+    	
+    	
+    	
+		//strcpy(admin, Admin_str); 
+		//strcpy(pw, Pw_str);
+		 
+	
+		
+		if (strcmp(admin, a) == 0 && strcmp(pw, p) == 0) {
+			
+			return 1; 
+			 
+		}
+		else{ 
+		return 0;
+		}
+}
+/*		if(admin=="admin")
 		{	
 			 int p=getadpassword();
 			 if (p==1)
@@ -75,9 +122,9 @@ class alogin
 			adlogin();
 		}
 	}
-	int getadpassword();
+	int getadpassword();*/
 };	
-int alogin::getadpassword()
+/*int alogin::getadpassword()
 {
 	string pw;
 	cout<<"\t\tEnter the password: ";
@@ -93,6 +140,7 @@ int alogin::getadpassword()
 		getadpassword();
 	}
 }
+*/
 void allotment_gold(int gc)
 {
     if(gc!=0)
@@ -212,8 +260,8 @@ class member
     		strncpy(contact, u_contact.c_str(), sizeof(contact) - 1);
     		contact[sizeof(contact) - 1] = '\0';  // Ensure null termination
     		
-    		cleardevice(); 
-    		drawUserMenu();
+    		//cleardevice(); 
+    		//drawUserMenu();
     	/*	x:
     		while(strlen(contact)!=10)
     		{
@@ -258,12 +306,46 @@ class member
     	}
     	void show_mem()
     	{
-    		cout<<endl<<"member code: "<<member_number;
+    		int click_x, click_y, clx;
+    		click_x = 0; 
+    		click_y = 0;
+    		
+    	do{
+			
+    		cleardevice();
+    		drawUserRecords(); 
+    		
+    		
+    		setbkcolor(WHITE); 
+    		setcolor(BLACK);
+    		
+    		settextstyle(8, HORIZ_DIR, 2);
+    		
+    		
+    		string member_number_str = to_string(member_number);
+    		string fee_str = to_string(fee);
+    		
+    		outtextxy(640+5, 330+15, (char *)member_number_str.c_str());
+   			outtextxy(640+5, 220+15, (char *)std::string(mem_name).c_str());
+    		outtextxy(640+5, 441+15, (char *)std::string(classs).c_str());
+    		
+    		outtextxy(908+5, 330+15, (char *)std::string(contact).c_str());
+    		outtextxy(908+5, 441+15, (char *)std::string(timings).c_str());
+    		outtextxy(640+5, 552+15, (char *)fee_str.c_str());
+    		
+    		
+    		
+    		clx = handleUserRecords(click_x, click_y);
+    		
+    }while(clx != 1); 
+    exit; 
+    		
+    	/*	cout<<endl<<"member code: "<<member_number;
     		cout<<endl<<"Name: "<<mem_name;
     		cout<<endl<<"category: "<<classs;
     		cout<<endl<<"fee: "<<fee;
     		cout<<endl<<"contact: "<<contact;
-    		cout<<endl<<"timings: "<<timings<<endl;
+    		cout<<endl<<"timings: "<<timings<<endl;*/
     	}
     	int getmem()
     	{
@@ -364,10 +446,12 @@ class gymmember: public user
     	}
     	fp.close();
     	if(found == false)
-    	cout<<"\n\nNo record found";
-    	
-    	cout<<"press any key to continue\n";
+    	{		
+    	cleardevice(); 
+    	drawNoUser(); 
     	getch();
+    }
+    	
     }
 
     void delete_member(int num = 0)
@@ -389,20 +473,25 @@ class gymmember: public user
     		}
             
     	}
+    	cleardevice(); 
+        drawUserDeleteComplete(); 
+        delay(2000);
+        
     	fp2.close();
     	fp.close();
     	remove("hamro.bin");
     	rename("timro.bin","hamro.bin");
+exit; 
 
-        cout<<"press any key to continue\n";
-    	getch();
-        
+         
     }
    void edit_member()
     {
     	int num;
     	char ch = 'T'; // intilized
     	system("cls");
+    	
+    	
     	num=n;
     	fp.open("hamro.bin", ios::app | ios::in | ios::binary);
         fp.seekg(0,ios::beg);
@@ -433,7 +522,7 @@ class gymmember: public user
 
     	fflush(stdin);
     }
-    
+   
 }s1;
 class admin: public user
 {	int n;
@@ -445,31 +534,51 @@ class admin: public user
     	m1.create_mem();
     	fp.write((char*)&m1,sizeof(m1));
     	fp.close();
-    	cout<<endl<<endl<<"the member has been succesfully added...";
+    	//cout<<endl<<endl<<"the member has been succesfully added...";
     	fflush(stdin);
     }
     void show_all()
     {
     	system("cls");
     	bool found=false;
-    	cout<<endl<<"\t\tRECORDS...";
+    	//cout<<endl<<"\t\tRECORDS...";
     	fp.open("hamro.bin",ios::in);
     	while(fp.read((char*)&m1,sizeof(m1)))
     	{
-    		m1.show_mem();
+    	m1.show_mem();
     	fflush(stdin);
     	found=true;
     	}
     	fp.close();
     	if(found == false)
-    	cout<<"\n\nNo record found";
-    	cout<<"\npress any key to continue";
+    	{
+		cout<<"\n\nNo record found";
+		} 
+		
+    	//cout<<"\npress any key to continue";
     	getch();
     }
      void display_record()
-    {	int num;
-    cout<<"enter the member number to be displayed";
-    cin>>num;
+    {	
+	
+	int num;
+    int click_x, click_y; 
+    
+    char Dis_Num[10];
+    click_x = 0; 
+    click_y = 0; 
+    
+    
+    cleardevice(); 
+    drawAdminSearch(); 
+    handleAdminSearch(click_x, click_y); 
+    
+    strncpy(Dis_Num, dis_num.c_str(), sizeof(Dis_Num) - 1);
+    Dis_Num[sizeof(Dis_Num) - 1] = '\0';
+		
+	num = stringToInt(Dis_Num);
+    
+    
     	bool found=false;
     	fp.open("hamro.bin",ios::in);
     	while(fp.read((char*)&m1,sizeof(m1)))
@@ -485,19 +594,37 @@ class admin: public user
     	if(found == false)
     	cout<<"\n\nNo record found";
     	
-    	cout<<"press any key to continue\n";
-    	getch();
+    	//cout<<"press any key to continue\n";
+    	//getch();
     	
     }
 
     void delete_member(int num = 0)
     {
     	
+    	int click_x, click_y;
+    	char Member_Del[10];
+    	click_x = 0;
+    	click_y = 0;
+    	
     	system("cls");
         if(num == 0 )
         {
-            cout<<endl<<endl<<"Please Enter The member number: ";
-    	cin>>num;
+        	
+        	cleardevice(); 
+        	drawDeleteMemberNum(); 
+        	
+        num = handleMemberDeleteNum(click_x, click_y);
+        
+        strncpy(Member_Del, Mem_Del.c_str(), sizeof(Member_Del) - 1);
+    	Member_Del[sizeof(Member_Del) - 1] = '\0';
+        
+        
+        num = stringToInt(Member_Del);
+        
+        
+        //cout<<endl<<endl<<"Please Enter The member number: ";
+    	//cin>>num;
         
     	fp.open("hamro.bin",ios::in|ios::out);
         
@@ -517,8 +644,11 @@ class admin: public user
     	fp.close();
     	remove("hamro.bin");
     	rename("timro.bin","hamro.bin");
-    	cout<<endl<<endl<<"\tRecord Deleted..."; 
-    	getchar();
+    	
+    	drawUserDeleteComplete(); 
+    	delay(1000);
+    	
+    	//cout<<endl<<endl<<"\tRecord Deleted..."; 
         }
         else
         {
@@ -541,7 +671,7 @@ class admin: public user
     	remove("hamro.bin");
     	rename("timro.bin","hamro.bin");
 
-        cout<<"press any key to continue\n";
+        //cout<<"press any key to continue\n";
     	getch();
         }
     }
@@ -549,9 +679,27 @@ class admin: public user
     {
     	int num;
     	char ch = 'T'; // intilized
-    	system("cls");
-    	cout<<endl<<endl<<"\tPlease Enter The member number: ";
-    	cin>>num;
+    	char Member_Edit[10];
+    	int click_x, click_y; 
+    	
+    	click_x = 0; 
+    	click_y = 0;
+    			
+		cleardevice(); 
+		
+        drawAdminEdit(); 
+        	
+        num = handleAdminEdit(click_x, click_y);
+        
+        strncpy(Member_Edit, Admin_E.c_str(), sizeof(Member_Edit) - 1);
+    	Member_Edit[sizeof(Member_Edit) - 1] = '\0';
+        
+        
+        num = stringToInt(Member_Edit);
+        
+	
+    	
+    	
     	fp.open("hamro.bin", ios::app | ios::in | ios::binary);
         fp.seekg(0,ios::beg);
     	while(fp.read((char*)&m1,sizeof(m1)) && ch == 'T')
@@ -559,12 +707,12 @@ class admin: public user
     		if(m1.getmem()==num) // entre only if user's i/p no. matches
     		{
     			m1.show_mem();
-    			cout<<"\nPlease Enter The New details of the member: "<<endl;
+    			//cout<<"\nPlease Enter The New details of the member: "<<endl;
     			m1.create_mem();
     			int pos=1*sizeof(m1);
     			fp.seekp(pos,ios::cur);
     			fp.write((char*)&m1,sizeof(m1));
-    			cout<<endl<<endl<<"\t Record Successfully Updated...";
+    			//cout<<endl<<endl<<"\t Record Successfully Updated...";
                 ch = 'f';	// record found
                fp.close();
                delete_member(num);
@@ -594,22 +742,49 @@ void diet1(float W) {
         float protein = W * 1.8;
         float carb = 0.45 * t;
         float fat = 0.25 * t;
+        
+        const char *db_name = "test_database.db;";
+        
+        access_diet1_data(db_name);
+    	
+    	
+        string CAL_str = to_string(t);
+        string P_str = to_string(protein);
+        string C_str = to_string(carb);
+        string F_str = to_string(fat);
+        
+        setcolor(BLACK);
+        
+        
+         outtextxy(445, 600, (char *)CAL_str.c_str());
+        outtextxy(445, 652, (char *)P_str.c_str());
+        outtextxy(858, 600, (char *)C_str.c_str());
+        outtextxy(858, 652, (char *)F_str.c_str());
+        
+        
 
-        cout << "Calorie Intake for Fat Loss (C_fat_loss) = " << t << " cal\n";
-        cout << "Protein Intake for Fat Loss (P_fat_loss) = " << protein << " g\n";
-        cout << "Carbohydrates for Fat Loss (CHO_fat_loss) = " << carb << " g\n";
-        cout << "Fats for Fat Loss (F_fat_loss) = " << fat << " g\n";
+       // cout << "Calorie Intake for Fat Loss (C_fat_loss) = " << t << " cal\n";
+       // cout << "Protein Intake for Fat Loss (P_fat_loss) = " << protein << " g\n";
+       // cout << "Carbohydrates for Fat Loss (CHO_fat_loss) = " << carb << " g\n";
+       // cout << "Fats for Fat Loss (F_fat_loss) = " << fat << " g\n"; 
 
-        cout << "\nSuggested food items:\n";
-        cout << " Proteins: Chicken breast, turkey, lean beef, tofu, fish (salmon, tuna), Greek yogurt, cottage cheese.\n";
-        cout << " Carbohydrates: Brown rice, quinoa, sweet potatoes, whole-grain pasta, oats, beans, legumes, and leafy greens.\n";
-        cout << " Fats: Avocado, nuts (almonds, walnuts), seeds (chia, flax), olive oil, fatty fish (salmon, mackerel).\n\n";
+       // cout << "\nSuggested food items:\n";
+       // cout << " Proteins: Chicken breast, turkey, lean beef, tofu, fish (salmon, tuna), Greek yogurt, cottage cheese.\n";
+       // cout << " Carbohydrates: Brown rice, quinoa, sweet potatoes, whole-grain pasta, oats, beans, legumes, and leafy greens.\n";
+       // cout << " Fats: Avocado, nuts (almonds, walnuts), seeds (chia, flax), olive oil, fatty fish (salmon, mackerel).\n\n";
+       int click_x, click_y; 
+       
+       click_x = 0; click_y = 0;
+       
+       handleEntireScreenClick(click_x, click_y);
+       
     }
     
 void fitness1(int count, float W) 
 {
         //cout << "WORKOUT AND DIET PLAN FOR WEIGHT LOSS!!!! \n\n\n";
         cleardevice(); 
+        drawFitness1();
         
 
         cout << "Day " << count << " Workout Plan:\n\n";
@@ -721,8 +896,35 @@ void diet2(float W)
 	float protein= (W * 2.2);
 	float carb= 0.45 * t;
 	float fat=0.25 * t;
+	
+	const char *db_name = "test_database.db;";
+        
+    access_diet2_data(db_name);
+	
+	string CAL_str = to_string(t);
+        string P_str = to_string(protein);
+        string C_str = to_string(carb);
+        string F_str = to_string(fat);
+        
+        setcolor(BLACK);
+        
+        
+        outtextxy(445, 600, (char *)CAL_str.c_str());
+        outtextxy(445, 652, (char *)P_str.c_str());
+        outtextxy(858, 600, (char *)C_str.c_str());
+        outtextxy(858, 652, (char *)F_str.c_str());
+        
+        
+        
+        int click_x, click_y; 
+       
+       click_x = 0; click_y = 0;
+       
+       handleEntireScreenClick(click_x, click_y);
+        
+        
 
-	cout<<"Diet Plan:\n";
+/*	cout<<"Diet Plan:\n";
 	cout<<"Calorie Intake for Muscle Building (C_muscle_building) ="<<t <<"cal\n";
 	cout<<"Protein Intake for Muscle Building (P_muscle_building) ="<< protein ;
 	cout<<"\nCarbohydrates for Muscle Building (CHO_muscle_building) ="<< carb;
@@ -731,12 +933,17 @@ void diet2(float W)
 	cout<<"\nSuggested food items:\n";
 	cout<<"Proteins: Lean meats (chicken, turkey, beef), eggs, dairy products (Greek yogurt, milk), fish, tofu, tempeh.";
 	cout<<"\nCarbohydrates: Whole-grain bread, brown rice, quinoa, sweet potatoes, oats, fruits (bananas, berries), and vegetables (broccoli, spinach).";
-	cout<<"\nFats: Avocado, nuts (almonds, cashews), seeds (flax, chia), olive oil, fatty fish (salmon, mackerel).\n\n";
+	cout<<"\nFats: Avocado, nuts (almonds, cashews), seeds (flax, chia), olive oil, fatty fish (salmon, mackerel).\n\n";*/
 		
 }
 
 void fitness2(int count, float W) 
 {
+	
+	cleardevice(); 
+    drawFitness1();
+    
+    
 	cout<<"WORKOUT PLAN FOR MUSCLE BUILDING!!!! \n\n\n";
         if(count == 1 || count == 8 || count == 15 || count == 22 || count == 29)
         {
@@ -846,23 +1053,53 @@ void diet3(float W)
 	float protein= (W * 1.5);
 	float carb=(0.5 * t);
 	float fat=(0.25 * t);
+	
+	const char *db_name = "test_database.db;";
+        
+    access_diet3_data(db_name);
+	
+	string CAL_str = to_string(t);
+        string P_str = to_string(protein);
+        string C_str = to_string(carb);
+        string F_str = to_string(fat);
+        
+        
+        
+        setcolor(BLACK);
+        
+        
+         outtextxy(445, 600, (char *)CAL_str.c_str());
+        outtextxy(445, 652, (char *)P_str.c_str());
+        outtextxy(858, 600, (char *)C_str.c_str());
+        outtextxy(858, 652, (char *)F_str.c_str());
+        
 
-	cout<<"Diet Plan:\n";
+	/*cout<<"Diet Plan:\n";
 	cout<<"Calorie Intake for General Fitness (C_maintain) ="<< t<<"cal";
 	cout<<"\nProtein Intake for General Fitness (P_ maintain) ="<< protein;
 	cout<<"\nCarbohydrates for General Fitness (CHO_ maintain) ="<< carb;
 	cout<<"\nFats for General Fitness (F_ maintain) ="<<fat ;
 	
 	cout<<"\nSuggested food items:\n";
-	cout<<"Proteins: Lean meats (chicken, turkey), eggs, low-fat dairy products, tofu, legumes (lentils, chickpeas).";
+	cout<<"\nProteins: Lean meats (chicken, turkey), eggs, low-fat dairy products, tofu, legumes (lentils, chickpeas).";
 	cout<<"\nCarbohydrates: Whole-grain bread, whole-grain pasta, brown rice, fruits (apples, pears), and vegetables (carrots, green beans).";
-	cout<<"\nFats: Olive oil, nuts (almonds, peanuts), seeds (pumpkin, sunflower), avocados.\n\n";
-	
+	cout<<"\nFats: Olive oil, nuts (almonds, peanuts), seeds (pumpkin, sunflower), avocados.\n\n";*/
+	int click_x, click_y; 
+       
+    click_x = 0; click_y = 0;
+       
+    handleEntireScreenClick(click_x, click_y);
+    
 }
 
 void fitness3(int count, float W) 
 {
-       cout<<"WORKOUT PLAN FOR MAINTAINING FITNESS!!!! \n\n\n";
+	
+	cleardevice(); 
+    drawFitness1();
+    
+    
+       //cout<<"WORKOUT PLAN FOR MAINTAINING FITNESS!!!! \n\n\n";
         if(count == 1 || count == 8 || count == 15 || count == 22 || count == 29)
         {
         cout<<"Day: "<<count<<" Full-Body Strength\n\n";
@@ -943,7 +1180,10 @@ void fitness()
 	int click_y; 
 	click_x = 0; 
 	click_y = 0; 
-	int day_count,c;
+	char DAY_count[3];
+	int day_count;
+	int c;
+	char W88[5];
     float weight;
     
     
@@ -952,6 +1192,15 @@ void fitness()
 	
 	handleDietSuggestion(click_x, click_y); 
 	
+	strncpy(DAY_count, DAYcount.c_str(), sizeof(DAY_count) - 1);
+    DAY_count[sizeof(DAY_count) - 1] = '\0';
+	
+	day_count = stringToInt(DAY_count);
+	
+	strncpy(W88, W8.c_str(), sizeof(W88) - 1);
+    W88[sizeof(W88) - 1] = '\0';
+	
+	weight = stringToInt(W88);
 	
 	//cout<<"displaying fitness tips..."<<endl;
 	
@@ -991,11 +1240,15 @@ void fitness()
 };
      void fnmanage()
     {
+    	int click_x, click_y;
+    	click_x = 0; 
+    	click_y = 0; 
+    	
 		while(true)
     	{
     	system("cls");
     	int option;
-    	cout<<"\t***********************************************";
+    	/*cout<<"\t***********************************************";
     	cout<<"\n\tPress 1 to CREATE MEMBER";
     	cout<<"\n\tPress 2 to DISPLAY ALL RECORDS";
     	cout<<"\n\tPress 3 to SEARCH FOR A PARTICULAR RECORD ";
@@ -1003,8 +1256,11 @@ void fitness()
     	cout<<"\n\tPress 5 to DELETE MEMBER";
     	cout<<"\n\tPress 6 to LOGOUT";
     	cout<<"\n\t**********************************************";
-    	cout<<"\n\n\tOption: ";
-    	cin>>option;
+    	cout<<"\n\n\tOption: ";*/
+    	drawAdminMenu(); 
+    	option = handleAdminMenu(click_x, click_y); 
+    	
+    
     	switch(option)
     	{
     		case 1: system("cls");
@@ -1017,7 +1273,7 @@ void fitness()
     				
     		case 3:
     				int num;
-   				system("cls"); 
+   				    system("cls"); 
     				s2.display_record();
     				system("cls");
     				break;
@@ -1031,7 +1287,7 @@ void fitness()
     		        break;
    				
     		case 6:return;    		
-    		default:cout<<"invalid option please try again";
+    		
     		}
     	}
     }
@@ -1088,19 +1344,25 @@ void user_record()
 int main()
 {		
 
-int gd = DETECT, gm;
+    int gd = DETECT, gm;
     initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
 
-    // Set window size
+    // Set window size 
     initwindow(1280, 720, "Gym Management and Fitness Suggestion System");
 	int x, y, i,k,z;
 	
 		
-	
+	const char* db_path = "test_database.db";
 		
 		a:
 		
-		drawLandingPage();
+	
+			
+    
+		
+	drawLandingPage();
+	check_sqlite_connectivity(db_path);
+		
 		i = handleLandingPageClick(x ,y);
 
 			if(i==1)
@@ -1137,21 +1399,23 @@ int gd = DETECT, gm;
 			if(i==2)
             {
             	system("cls"); 
-                cout<<endl<<"\t\tYou're in admin mode"<<endl;	
-                cout<<"\t\t********************";
+               // cout<<endl<<"\t\tYou're in admin mode"<<endl;	
+               // cout<<"\t\t********************";
 					alogin ad;
 					k=ad.adlogin();
 					if(k==1)
 					{
 						fnmanage();
-						goto a;
+						exit;
 					}
 					else
 					{
+						
 						cout<<"you cannot access manageral details!";
 						cout<<"\t\tpress any key to continue";
 						getch();
 					}
+					goto a; 
 					}
 			if(i==3)
 			{

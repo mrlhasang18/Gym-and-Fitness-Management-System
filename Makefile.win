@@ -1,28 +1,31 @@
-# Project: Gym and Fitness Management System
-# Makefile created by Dev-C++ 5.11
+# Project: GYM-MFRS
+# Makefile created by Embarcadero Dev-C++ 6.3
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o
-LINKOBJ  = main.o
-LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 -m32
-INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
-CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = "Gym and Fitness Management System.exe"
+OBJ      = C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.o gym-membership-and-fitness-management-project.o
+LINKOBJ  = C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.o gym-membership-and-fitness-management-project.o
+LIBS     = -L"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib32" -static-libgcc -lbgi -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 -L"C:/Program Files/MySQL/MySQL Server 8.0/lib" "C:/Program Files/MySQL/MySQL Server 8.0/lib/libmysql.lib" D:/Dev-Cpp/TDM-GCC-64/lib/sqlite3.dll -m32
+INCS     = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
+CXXINCS  = -I"D:/Dev-Cpp/TDM-GCC-64/include" -I"D:/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"D:/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++" -I"C:/Program Files/MySQL/MySQL Server 8.0/include" -I"C:/Program Files/MySQL/MySQL Server 8.0/include/mysql"
+BIN      = GYM-MFRS.exe
 CXXFLAGS = $(CXXINCS) -m32
 CFLAGS   = $(INCS) -m32
-RM       = rm.exe -f
+DEL      = D:\Dev-Cpp\devcpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 
 all: all-before $(BIN) all-after
 
 clean: clean-custom
-	${RM} $(OBJ) $(BIN)
+	${DEL} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-main.o: main.cpp
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.o: C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.c
+	$(CC) -c C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.c -o C:/Users/Dell/Downloads/sqlite-amalgamation-3460000/sqlite3.o $(CFLAGS)
+
+gym-membership-and-fitness-management-project.o: gym-membership-and-fitness-management-project.cpp
+	$(CPP) -c gym-membership-and-fitness-management-project.cpp -o gym-membership-and-fitness-management-project.o $(CXXFLAGS)

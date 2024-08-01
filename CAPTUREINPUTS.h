@@ -6,7 +6,13 @@
 #include <stdexcept>
 #include <graphics.h>
 
-
+template <typename T>
+std::string to_string(const T& value) 
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
 
 int stringToInt(const std::string& str) {
     int result = 0;
@@ -218,7 +224,8 @@ void captureDayCountInput(int left, int top, int right, int bottom, std::string 
     int y = top + 10;  // Starting y position for text inside the input box
 
     // Set the text color and style
-    setcolor(WHITE); // Change the text color
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {
@@ -261,18 +268,17 @@ void captureWeightInput(int left, int top, int right, int bottom, std::string &i
     int y = top + 10;  // Starting y position for text inside the input box
 
     // Set the text color and style
-    setcolor(WHITE); // Change the text color
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     bool decimalPointUsed = false;
 
     while (true) {
-        // Draw the input box
-        rectangle(left, top, right, bottom);
 
         // Clear the text display area with the background color
         setfillstyle(SOLID_FILL, LIGHTGRAY);
-        bar(left + 1, top + 1, right - 1, bottom - 1);
+        //bar(left + 1, top + 1, right - 1, bottom - 1);
 
         // Display the current input text
         outtextxy(x, y, (char*)inputText.c_str());
@@ -299,4 +305,218 @@ void captureWeightInput(int left, int top, int right, int bottom, std::string &i
 }
 
 
+
+
+
+void captureAdminName(int left, int top, int right, int bottom, std::string &inputText) {
+    char ch;
+    int x = left + 5;  // Starting x position for text inside the input box
+    int y = top + 10;  // Starting y position for text inside the input box
+    
+    setcolor(WHITE); // Change the text color
+    
+    settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
+
+    while (true) {
+    // Draw the input box
+    //rectangle(240, 340, 480, 380);
+        
+        // Display the current input text
+        outtextxy(x, y, (char*)inputText.c_str());
+
+        // Get a character from the user
+        ch = getch();
+
+        // If Enter key is pressed, break the loop
+        if (ch == 13) {
+            break;
+        }
+        
+        // If Backspace key is pressed, remove the last character
+        if (ch == 8 && !inputText.empty()) {
+            inputText.erase(inputText.size() - 1);  // Use erase method instead of pop_back
+        } else if (ch != 8 && ch != 13) {
+            // Append the character to the input text
+            inputText.push_back(ch);
+            
+        }
+
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
+
+        // Redraw the input box with the updated text
+        outtextxy(x, y, (char*)inputText.c_str());
+        
+    }
+}
+
+
+//***************************************************************************************************
+
+void captureAdminPassword(int left, int top, int right, int bottom, std::string &password) {
+    char ch;
+    int x = left + 5;  // Starting x position for text inside the input box
+    int y = top + 10;  // Starting y position for text inside the input box
+
+setcolor(WHITE); // Change the text color
+    
+    settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
+
+
+    while (true) {
+        // Display asterisks for the length of the password
+        std::string maskedPassword(password.length(), '*');
+        outtextxy(x, y, (char*)maskedPassword.c_str());
+
+        // Get a character from the user
+        ch = getch();
+
+        // If Enter key is pressed, break the loop
+        if (ch == 13) {
+            break;
+        }
+        
+        // If Backspace key is pressed, remove the last character
+        if (ch == 8 && !password.empty()) {
+            password.erase(password.size() - 1);  // Use erase method instead of pop_back
+        } else if (ch != 8 && ch != 13) {
+            // Append the character to the password
+            password.push_back(ch);
+        }
+
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
+
+        // Redraw the input box with the updated password
+        std::string maskedPasswordUpdated(password.length(), '*');
+        outtextxy(x, y, (char*)maskedPasswordUpdated.c_str());
+    }
+}
+
+//***************************************************************************************************
+
+void captureDeleteMemberNum(int left, int top, int right, int bottom, std::string &inputText) {
+    char ch;
+    int x = left + 5;  // Starting x position for text inside the input box
+    int y = top + 10;  // Starting y position for text inside the input box
+    
+    setcolor(WHITE); // Change the text color   
+    settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
+
+    while (true) {
+        // Draw the input box
+        rectangle(left, top, right, bottom);
+
+        // Display the current input text
+        outtextxy(x, y, (char*)inputText.c_str());
+
+        // Get a character from the user
+        ch = getch();
+
+        // If Enter key is pressed and input is up to 3 digits, break the loop
+        if (ch == 13 && inputText.length() <= 3) {
+            break;
+        }
+
+        // If Backspace key is pressed, remove the last character
+        if (ch == 8 && !inputText.empty()) {
+            inputText.erase(inputText.size() - 1);  // Use erase method instead of pop_back
+        } else if (isdigit(ch) && inputText.length() < 3) {
+            // Append the digit to the input text
+            inputText.push_back(ch);
+        }
+
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
+
+        // Redraw the input box with the updated text
+        outtextxy(x, y, (char*)inputText.c_str());
+    }
+}
+
+//*********************************************************************************************************
+
+void captureAdminEdit(int left, int top, int right, int bottom, std::string &inputText) {
+    char ch;
+    int x = left + 5;  // Starting x position for text inside the input box
+    int y = top + 10;  // Starting y position for text inside the input box
+    
+    setcolor(WHITE); // Change the text color   
+    settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
+
+    while (true) {
+        // Draw the input box
+        rectangle(left, top, right, bottom);
+
+        // Display the current input text
+        outtextxy(x, y, (char*)inputText.c_str());
+
+        // Get a character from the user
+        ch = getch();
+
+        // If Enter key is pressed and input is up to 3 digits, break the loop
+        if (ch == 13 && inputText.length() <= 3) {
+            break;
+        }
+
+        // If Backspace key is pressed, remove the last character
+        if (ch == 8 && !inputText.empty()) {
+            inputText.erase(inputText.size() - 1);  // Use erase method instead of pop_back
+        } else if (isdigit(ch) && inputText.length() < 3) {
+            // Append the digit to the input text
+            inputText.push_back(ch);
+        }
+
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
+
+        // Redraw the input box with the updated text
+        outtextxy(x, y, (char*)inputText.c_str());
+    }
+}
+
+//*******************************************************************************************************
+void captureAdminSearch(int left, int top, int right, int bottom, std::string &inputText) {
+    char ch;
+    int x = left + 5;  // Starting x position for text inside the input box
+    int y = top + 10;  // Starting y position for text inside the input box
+    
+    setcolor(WHITE); // Change the text color   
+    settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
+
+    while (true) {
+        // Draw the input box
+        rectangle(left, top, right, bottom);
+
+        // Display the current input text
+        outtextxy(x, y, (char*)inputText.c_str());
+
+        // Get a character from the user
+        ch = getch();
+
+        // If Enter key is pressed and input is up to 3 digits, break the loop
+        if (ch == 13 && inputText.length() <= 3) {
+            break;
+        }
+
+        // If Backspace key is pressed, remove the last character
+        if (ch == 8 && !inputText.empty()) {
+            inputText.erase(inputText.size() - 1);  // Use erase method instead of pop_back
+        } else if (isdigit(ch) && inputText.length() < 3) {
+            // Append the digit to the input text
+            inputText.push_back(ch);
+        }
+
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
+
+        // Redraw the input box with the updated text
+        outtextxy(x, y, (char*)inputText.c_str());
+    }
+}
 #endif
