@@ -756,7 +756,7 @@ void diet1(float W) {
         setcolor(BLACK);
         
         
-         outtextxy(445, 600, (char *)CAL_str.c_str());
+        outtextxy(445, 600, (char *)CAL_str.c_str());
         outtextxy(445, 652, (char *)P_str.c_str());
         outtextxy(858, 600, (char *)C_str.c_str());
         outtextxy(858, 652, (char *)F_str.c_str());
@@ -783,6 +783,8 @@ void diet1(float W) {
 void fitness1(int count, float W) 
 {
         //cout << "WORKOUT AND DIET PLAN FOR WEIGHT LOSS!!!! \n\n\n";
+        const char *db_name = "test_database.db;";
+        
         cleardevice(); 
         drawFitness1();
         
@@ -790,7 +792,11 @@ void fitness1(int count, float W)
         cout << "Day " << count << " Workout Plan:\n\n";
 
         if (count == 1 || count == 8 || count == 15 || count == 22 || count == 29) {
-            cout << "Day: " << count << " Upper Body\n\n";
+        	
+        	access_Fitness1_data(db_name, 1);
+        	
+        	
+            /*cout << "Day: " << count << " Upper Body\n\n";
 
             cout << "#. INSTRUCTION: \n";
             cout << "Pick a weight that leads you to failure at end of 15 rep\n";
@@ -801,12 +807,14 @@ void fitness1(int count, float W)
             cout << "1. DB Bench Press\n";
             cout << "2. DB Row\n";
             cout << "3. DB Shoulder Press\n";
-            cout << "4. Reverse Crunch\n";
+            cout << "4. Reverse Crunch\n";*/
         }
 
         if(count == 2|| count == 9 || count == 16 || count == 23 || count == 30)
         {
-        cout<<"Day: "<<count<<" Lower Body\n\n";
+        	
+        access_Fitness1_data(db_name, 2);	
+        /*cout<<"Day: "<<count<<" Lower Body\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Pick a weight that leads you to failure at end of 15 rep\n";
@@ -817,12 +825,14 @@ void fitness1(int count, float W)
         cout<<"1. Goblet Squat\n";
         cout<<"2. DB Romanian Deadlift\n";
         cout<<"3. DB Calf Raises\n";
-        cout<<"4. Weighted Crunch\n";     
+        cout<<"4. Weighted Crunch\n";     */
         
         }
         if(count == 3|| count == 10 || count == 17 || count == 24)
         {
-        cout<<"Day: "<<count<<" Full Body\n\n";
+        	
+        access_Fitness1_data(db_name, 3);
+        /*cout<<"Day: "<<count<<" Full Body\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Pick a weight that leads you to failure at end of 15 rep\n";
@@ -833,7 +843,7 @@ void fitness1(int count, float W)
         cout<<"1. Reverse Lunges\n";
         cout<<"2. Push Up\n";
         cout<<"3. DB Facepull \n";
-        cout<<"4. Plank: 30sec hold \n";     
+        cout<<"4. Plank: 30sec hold \n";  */   
        
         }
 
@@ -845,8 +855,8 @@ void fitness1(int count, float W)
 
         if(count == 5|| count == 12|| count == 19 || count == 26 )
         {
-        
-        cout<<"Day: "<<count<<" Upper Body\n\n";
+        access_Fitness1_data(db_name, 4);
+        /*cout<<"Day: "<<count<<" Upper Body\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Pick a weight that leads you to failure at end of 15 rep\n";
@@ -857,14 +867,14 @@ void fitness1(int count, float W)
         cout<<"1. DB Bench Press\n";
         cout<<"2. DB Row\n";
         cout<<"3. DB Shoulder Press\n";
-        cout<<"4. Reverse Crunch\n"; 
+        cout<<"4. Reverse Crunch\n"; */
         
         }
         
         if(count == 6|| count == 13 || count == 20 || count == 27 )
         {
-        
-        cout<<"Day: "<<count<<" Lower Body\n\n";
+        access_Fitness1_data(db_name, 5);
+        /*cout<<"Day: "<<count<<" Lower Body\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Pick a weight that leads you to failure at end of 15 rep\n";
@@ -875,12 +885,12 @@ void fitness1(int count, float W)
         cout<<"1. Goblet Squat\n";
         cout<<"2. DB Romanian Deadlift\n";
         cout<<"3. DB Calf Raises\n";
-        cout<<"4. Weighted Crunch\n";
+        cout<<"4. Weighted Crunch\n";*/
         }
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
         {
-         cout<<"Day: "<<count<<" Rest\n\n";
+        cout<<"Day: "<<count<<" Rest\n\n";
         cout<<"Rest: where strength finds its quiet power.\n";
         }
 
@@ -939,6 +949,7 @@ void diet2(float W)
 
 void fitness2(int count, float W) 
 {
+	const char *db_name = "test_database.db;";
 	
 	cleardevice(); 
     drawFitness1();
@@ -947,21 +958,24 @@ void fitness2(int count, float W)
 	cout<<"WORKOUT PLAN FOR MUSCLE BUILDING!!!! \n\n\n";
         if(count == 1 || count == 8 || count == 15 || count == 22 || count == 29)
         {
-        cout<<"Day: "<<count<<" Back and Biceps\n\n";
+        	
+        access_Fitness2_data(db_name, 1);
+        /*cout<<"Day: "<<count<<" Back and Biceps\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
-
         cout<<"#. Workout:\n";
         cout<<"1. Deadlifts: 4 sets of 6-8 reps\n";
         cout<<"2. Pull-Ups: 3 sets of 8-10 reps\n";
         cout<<"3. Pull-Ups: 3 sets of 8-10 reps\n";
-        cout<<"4. Barbell Bicep Curls: 3 sets of 10-12 reps\n"; 
+        cout<<"4. Barbell Bicep Curls: 3 sets of 10-12 reps\n"; */
         }
 
         if(count == 2|| count == 9 || count == 16 || count == 23 || count == 30)
         {
-        cout<<"Day: "<<count<<" Chest and Shoulders\n\n";
+        	
+        access_Fitness2_data(db_name, 2);
+        /*cout<<"Day: "<<count<<" Chest and Shoulders\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
@@ -970,12 +984,14 @@ void fitness2(int count, float W)
         cout<<"1. Bench Press: 4 sets of 6-8 reps\n";
         cout<<"2. Dumbbell Shoulder Press: 3 sets of 8-10 reps\n";
         cout<<"3. Incline Dumbbell Press: 3 sets of 8-10 reps\n";
-        cout<<"4. Lateral Raises: 3 sets of 10-12 reps\n";     
+        cout<<"4. Lateral Raises: 3 sets of 10-12 reps\n";    */ 
         
         }
         if(count == 3|| count == 10 || count == 17 || count == 24)
         {
-        cout<<"Day: "<<count<<" Legs, Abs, and Triceps\n\n";
+        	
+        access_Fitness2_data(db_name, 3);
+        /*cout<<"Day: "<<count<<" Legs, Abs, and Triceps\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
@@ -985,13 +1001,15 @@ void fitness2(int count, float W)
         cout<<"2. Leg Press: 3 sets of 8-10 reps\n";
         cout<<"3. Romanian Deadlifts: 3 sets of 8-10 reps \n";
         cout<<"4. Hanging Leg Raises: 3 sets of 10-12 reps \n";  
-		cout<<"5. Tricep Dips: 3 sets of 10-12 reps \n" ; 
+		cout<<"5. Tricep Dips: 3 sets of 10-12 reps \n" ; */
        
         }
 
         if(count == 4|| count == 11 || count == 18 || count == 25)
         {
-        cout<<"Day: "<<count<<" Back and Biceps\n\n";
+        	
+        access_Fitness2_data(db_name, 4);
+        /*cout<<"Day: "<<count<<" Back and Biceps\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
@@ -1000,14 +1018,15 @@ void fitness2(int count, float W)
         cout<<"1. Pull-Ups: 4 sets of 6-8 reps\n";
         cout<<"2. Barbell Rows: 3 sets of 8-10 reps\n";
         cout<<"3. Lat Pulldowns: 3 sets of 8-10 reps \n";
-        cout<<"4. Hammer Curls: 3 sets of 10-12 reps\n";  
+        cout<<"4. Hammer Curls: 3 sets of 10-12 reps\n";  */
        
         }
 
         if(count == 5|| count == 12|| count == 19 || count == 26 )
         {
         
-        cout<<"Day: "<<count<<" Chest and Shoulders\n\n";
+        access_Fitness2_data(db_name, 5);
+        /*cout<<"Day: "<<count<<" Chest and Shoulders\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
@@ -1016,14 +1035,14 @@ void fitness2(int count, float W)
         cout<<"1. Incline Bench Press: 4 sets of 6-8 reps\n";
         cout<<"2. Seated Dumbbell Shoulder Press: 3 sets of 8-10 reps\n";
         cout<<"3.Cable Flyes: 3 sets of 8-10 reps \n";
-        cout<<"4. Front Raises: 3 sets of 10-12 reps \n";  
+        cout<<"4. Front Raises: 3 sets of 10-12 reps \n";  */
         
         }
         
         if(count == 6|| count == 13 || count == 20 || count == 27 )
         {
-        
-        cout<<"Day: "<<count<<" Legs, Abs, and Triceps\n\n";
+        access_Fitness2_data(db_name, 6);
+        /*cout<<"Day: "<<count<<" Legs, Abs, and Triceps\n\n";
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
@@ -1033,7 +1052,7 @@ void fitness2(int count, float W)
         cout<<"2. Lunges: 3 sets of 8-10 reps (each leg)\n";
         cout<<"3. Leg Curls: 3 sets of 8-10 reps \n";
         cout<<"4. Planks: 3 sets (hold for 30-60 seconds) \n";  
-		cout<<"5. Skull Crushers: 3 sets of 10-12 reps \n";   
+		cout<<"5. Skull Crushers: 3 sets of 10-12 reps \n"; */  
         }
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
