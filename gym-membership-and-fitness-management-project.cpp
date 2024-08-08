@@ -416,7 +416,7 @@ class gymmember: public user
     		{	n=num;
     		fp.close();
    			user_record();
-    			ch='F';
+    		ch='F';
     		}
             
     	}
@@ -427,8 +427,8 @@ class gymmember: public user
 		
 		delay(5000);
 	    fp.close();
-
 		}
+	return;
 	}
 	void display_record()
     {	int num;
@@ -789,7 +789,7 @@ void fitness1(int count, float W)
         drawFitness1();
         
 
-        cout << "Day " << count << " Workout Plan:\n\n";
+        //cout << "Day " << count << " Workout Plan:\n\n";
 
         if (count == 1 || count == 8 || count == 15 || count == 22 || count == 29) {
         	
@@ -894,7 +894,7 @@ void fitness1(int count, float W)
         cout<<"Rest: where strength finds its quiet power.\n";
         }
 
-        cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
+        //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
 
         diet1(W);
     }
@@ -955,7 +955,7 @@ void fitness2(int count, float W)
     drawFitness1();
     
     
-	cout<<"WORKOUT PLAN FOR MUSCLE BUILDING!!!! \n\n\n";
+	//cout<<"WORKOUT PLAN FOR MUSCLE BUILDING!!!! \n\n\n";
         if(count == 1 || count == 8 || count == 15 || count == 22 || count == 29)
         {
         	
@@ -964,7 +964,7 @@ void fitness2(int count, float W)
         
         cout<<"#. INSTRUCTION: \n";
         cout<<"Take rest of full 3 min after each set\n\n\n";
-        cout<<"#. Workout:\n";
+        cout<<"#. Workout:\n";++
         cout<<"1. Deadlifts: 4 sets of 6-8 reps\n";
         cout<<"2. Pull-Ups: 3 sets of 8-10 reps\n";
         cout<<"3. Pull-Ups: 3 sets of 8-10 reps\n";
@@ -1061,7 +1061,7 @@ void fitness2(int count, float W)
         cout<<"Use this day for rest and recovery to prepare for the next cycle.\n";
         }
         
-        cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
+        //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
 
         diet2(W);
 }
@@ -1113,6 +1113,8 @@ void diet3(float W)
 
 void fitness3(int count, float W) 
 {
+	const char *db_name = "test_database.db;";
+	
 	
 	cleardevice(); 
     drawFitness1();
@@ -1121,65 +1123,74 @@ void fitness3(int count, float W)
        //cout<<"WORKOUT PLAN FOR MAINTAINING FITNESS!!!! \n\n\n";
         if(count == 1 || count == 8 || count == 15 || count == 22 || count == 29)
         {
-        cout<<"Day: "<<count<<" Full-Body Strength\n\n";
+        	
+        access_Fitness3_data(db_name, 1);
+        /*cout<<"Day: "<<count<<" Full-Body Strength\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"1. Squats: 3 sets of 8-10 reps\n";
         cout<<"2. Push-Ups: 3 sets of 10-12 reps\n";
         cout<<"3. Bent Over Rows: 3 sets of 8-10 reps\n";
-        cout<<"4. Planks: 3 sets (hold for 30-60 seconds)\n"; 
+        cout<<"4. Planks: 3 sets (hold for 30-60 seconds)\n"; */
         }
 
         if(count == 2|| count == 9 || count == 16 || count == 23 || count == 30)
         {
-        cout<<"Day: "<<count<<"Cardio and Core\n\n";
+        
+		access_Fitness3_data(db_name, 2);
+        /*cout<<"Day: "<<count<<"Cardio and Core\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"1. Cardio: 20-30 minutes of moderate-intensity aerobic exercise (running, cycling, or using an elliptical).\n";
         cout<<"2. Planks: (3 sets, hold for 30-60 seconds)\n";
         cout<<"3. Russian Twists: (3 sets of 12-15 reps)\n";
-        cout<<"4. Leg Raises: (3 sets of 12-15 reps)\n";     
+        cout<<"4. Leg Raises: (3 sets of 12-15 reps)\n";   */  
         
         }
         if(count == 3|| count == 10 || count == 17 || count == 24)
         {
-        cout<<"Day: "<<count<<" Active Recovery\n\n";
+        	
+        access_Fitness3_data(db_name, 3);
+        /*cout<<"Day: "<<count<<" Active Recovery\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"1. Light to moderate-intensity activity like walking, swimming, or yoga\n";
-        cout<<"2. Stretching and mobility exercises\n";
+        cout<<"2. Stretching and mobility exercises\n";*/
         }
 
         if(count == 4|| count == 11 || count == 18 || count == 25)
         {
-        cout<<"Day: "<<count<<" Cardio Intervals\n\n";
+        
+        access_Fitness3_data(db_name, 4);
+        /*cout<<"Day: "<<count<<" Cardio Intervals\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"Cardio: 30-40 minutes of interval training (alternating between high-intensity and low-intensity periods). Choose your preferred cardio activity (running, cycling, or swimming).\n";
+        */
         }
 
         if(count == 5|| count == 12|| count == 19 || count == 26 )
         {
-        
-        cout<<"Day: "<<count<<" Full-Body Strength\n\n";
+        access_Fitness3_data(db_name, 5);
+        /*cout<<"Day: "<<count<<" Full-Body Strength\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"1. Deadlifts: 3 sets of 6-8 reps\n";
         cout<<"2. Bench Press: 3 sets of 8-10 reps\n";
         cout<<"3. Pull-Ups: 3 sets of 6-8 reps \n";
-        cout<<"4. Dumbbell Shoulder Press: 3 sets of 8-10 reps \n";  
+        cout<<"4. Dumbbell Shoulder Press: 3 sets of 8-10 reps \n";  */
         }
         
         if(count == 6|| count == 13 || count == 20 || count == 27 )
         {
-        
-        cout<<"Day: "<<count<<" Cardio and Core\n\n";
+        access_Fitness3_data(db_name, 6);
+        /*cout<<"Day: "<<count<<" Cardio and Core\n\n";
         
         cout<<"#. Workout:\n";
         cout<<"1. Cardio: 20-30 minutes of steady-state cardio.\n";
         cout<<"2. Planks: (3 sets, hold for 30-60 seconds)\n";
         cout<<"3. Russian Twists: (3 sets of 12-15 reps) \n";
-        cout<<"4. Leg Raises: (3 sets of 12-15 reps) \n";  
+        cout<<"4. Leg Raises: (3 sets of 12-15 reps) \n";  */
         }
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
@@ -1188,7 +1199,7 @@ void fitness3(int count, float W)
         cout<<"Use this day for complete rest and recovery to allow your body to recuperate.\n";
         }
         
-        cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
+        //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
 
         diet3(W);
 }
@@ -1347,7 +1358,7 @@ void user_record()
     				//system("cls");
 					f.fitness();
 					//cout<<"Press any key to continue...";
-					getch();
+					//getch();
 					system("cls"); 
     				break;
     		case 4: int num;
@@ -1384,24 +1395,15 @@ int main()
 		
 		i = handleLandingPageClick(x ,y);
 
-			if(i==1)
+			if(i==10)
             {
-            
 				cleardevice(); 
-				
 				drawLoginPopup();
-				
-				
-				z = handleLoginPopup(x, y);
-				
+				//circle(100,250,250);
+				z = handleLoginPopup(x, y);	
 			}
-			
-			
                 //cout<<endl<<"\n\t\tYou're in user mode"<<endl;
                 //cout<<"\t\t*******************";
-                
-                
-                b:
                 //cout<<endl<<"\n\t\t1.register\n\t\t2.login\n\n\t\t";
                 
                 if(z==1)
@@ -1415,11 +1417,12 @@ int main()
 					goto a;
 			}
 			
-			if(i==2)
+			if(i==20)
             {
             	system("cls"); 
                // cout<<endl<<"\t\tYou're in admin mode"<<endl;	
-               // cout<<"\t\t********************";
+               //cout<<"\t\t*****************admin***";
+               getch();
 					alogin ad;
 					k=ad.adlogin();
 					if(k==1)

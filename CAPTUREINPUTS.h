@@ -48,12 +48,13 @@ void captureMemberNumber(int left, int top, int right, int bottom, std::string &
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color   
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color   
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {
         // Draw the input box
-        rectangle(left, top, right, bottom);
+        //rectangle(left, top, right, bottom);
 
         // Display the current input text
         outtextxy(x, y, (char*)inputText.c_str());
@@ -90,13 +91,14 @@ void captureContactInput(int left, int top, int right, int bottom, std::string &
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {
         // Draw the input box
-        rectangle(left, top, right, bottom);
+        //rectangle(left, top, right, bottom);
 
         // Display the current input text
         outtextxy(x, y, (char*)inputText.c_str());
@@ -179,7 +181,8 @@ void capturePasswordInput(int left, int top, int right, int bottom, std::string 
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
 
-setcolor(WHITE); // Change the text color
+	setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
@@ -231,7 +234,7 @@ void captureDayCountInput(int left, int top, int right, int bottom, std::string 
     while (true) {
         // Draw the input box
         setfillstyle(SOLID_FILL, LIGHTGRAY);
-        rectangle(left, top, right, bottom);
+        
 
         // Clear the text display area with the background color
         
@@ -255,6 +258,9 @@ void captureDayCountInput(int left, int top, int right, int bottom, std::string 
             // Append the digit to the input text
             inputText.push_back(ch);
         }
+        // Clear the previous text display area
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
     }
 }
 
@@ -301,6 +307,8 @@ void captureWeightInput(int left, int top, int right, int bottom, std::string &i
             }
             inputText.push_back(ch);
         }
+        setfillstyle(SOLID_FILL, LIGHTGRAY);
+        bar(left + 1, top + 1, right - 1, bottom - 1);
     }
 }
 
@@ -313,7 +321,8 @@ void captureAdminName(int left, int top, int right, int bottom, std::string &inp
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
@@ -359,7 +368,8 @@ void captureAdminPassword(int left, int top, int right, int bottom, std::string 
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
 
-setcolor(WHITE); // Change the text color
+setbkcolor(WHITE);
+setcolor(BLACK); // Change the text color
     
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
@@ -402,7 +412,9 @@ void captureDeleteMemberNum(int left, int top, int right, int bottom, std::strin
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color   
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color   
+    
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {
@@ -444,7 +456,8 @@ void captureAdminEdit(int left, int top, int right, int bottom, std::string &inp
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color   
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color   
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {
@@ -485,7 +498,8 @@ void captureAdminSearch(int left, int top, int right, int bottom, std::string &i
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color   
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color   
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 
     while (true) {

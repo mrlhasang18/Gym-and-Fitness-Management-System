@@ -218,24 +218,24 @@ int handleLandingPageClick(int x, int y)
         if (ismouseclick(WM_LBUTTONDOWN)) 
 		{
             getmouseclick(WM_LBUTTONDOWN, x, y);
-            
-    if (isClickInBounds(x, y, 972, 597, 1143, 647.5)) 
-	{
-        //currentPage = LOGIN_USER;
-        //cleardevice();
-        //drawLoginForm();
-		return 1; 
-    }
-    else if (isClickInBounds(x, y, 1004, 666, 1003+108, 668+15)) 
-	{
-        //currentPage = ADMIN_LOG;
-        //cleardevice();
-        return 2;
-    } 
-	else if (isClickInBounds(x, y, 200, 400, 400, 430)) {
-        closegraph();
-        exit(0);
-    }
+				            
+				    if (isClickInBounds(x, y, 972, 597, 1143, 647.5)) 
+					{
+				        //currentPage = LOGIN_USER;
+				        //cleardevice();
+				        //drawLoginForm();
+						return 10; 
+				    }
+				     if (isClickInBounds(x, y, 1004, 666, 1003+108, 668+15)) 
+					{
+				        //currentPage = ADMIN_LOG;
+				        //cleardevice();
+				        return 20;
+				    } 
+					if (isClickInBounds(x, y, 200, 400, 400, 430)) {
+				        closegraph();
+				        exit(0);
+				    }
     
 	
 }
@@ -366,11 +366,12 @@ else if(isClickInBounds(x,y, 969, 252, 969+216, 252+216)){
 //currentPage = USER_QUIT; 
 return 1; 
 }
+else if(isClickInBounds(x,y, 867, 626, 867+340, 626+43)){ 
+
+return 5; 
 }
 }
-
-
-
+}
 }
 
 //***************************************************************************************
