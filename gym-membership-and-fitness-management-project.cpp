@@ -481,9 +481,7 @@ class gymmember: public user
     	fp.close();
     	remove("hamro.bin");
     	rename("timro.bin","hamro.bin");
-exit; 
-
-         
+		exit;      
     }
    void edit_member()
     {
@@ -1350,7 +1348,7 @@ void user_record()
 	{
     		case 1:s1.delete_member();
     				system("cls"); 
-    		        break;
+    		        return;
     		case 2:s1.edit_member();
     				system("cls"); 
     		       break;
@@ -1371,7 +1369,7 @@ void user_record()
 }
 }
 
-int main()
+/*int main()
 {		
 
     int gd = DETECT, gm;
@@ -1451,5 +1449,61 @@ int main()
 
 }
 
+*/
+
+int main() {		
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
+
+    // Set window size 
+    initwindow(1280, 720, "Gym Management and Fitness Suggestion System");
+	int x, y, i, k, z;
+
+	const char* db_path = "test_database.db";
+
+	while (true) {  // Loop continuously until the user chooses to exit
+		cleardevice();  // Clear the screen for a fresh display
+
+		drawLandingPage();
+		check_sqlite_connectivity(db_path);
+		i = handleLandingPageClick(x, y);
+
+		if (i == 10) {  // User mode
+			cleardevice();
+			drawLoginPopup();
+			z = handleLoginPopup(x, y);
+
+			if (z == 1) {
+				s1.save_member();
+			} else if (z == 2) {
+				s1.log();
+				exit;
+			} else {
+				cout << "\nInvalid option\n";
+			}
+
+		} else if (i == 20) {  // Admin mode
+			cleardevice();
+			alogin ad;
+			k = ad.adlogin();
+			if (k == 1) {
+				fnmanage();
+			} else {
+				cout << "You cannot access managerial details!";
+				cout << "\t\tPress any key to continue";
+				getch();
+			}
+
+		} else if (i == 3) {  // Exit
+			closegraph();
+			exit(0);  // Exit the program
+		} else {
+			cout << "\nInvalid input, please try again.\n";
+		}
+	}
+
+	closegraph(); 
+	return 0;
+}
 
 
