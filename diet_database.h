@@ -11,7 +11,7 @@
 void access_diet1_data(const char* db_name) {
     sqlite3 *db;
     sqlite3_stmt *stmt;
-    const char *sql = "SELECT protein, carbohydrates, fats FROM diet1;";
+    const char *sql = "SELECT protien, carbohydrate, fats FROM diet1;";
     int rc;
 
     // Open the database

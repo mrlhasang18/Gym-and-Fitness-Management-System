@@ -136,7 +136,8 @@ void captureTextInput(int left, int top, int right, int bottom, std::string &inp
     int x = left + 5;  // Starting x position for text inside the input box
     int y = top + 10;  // Starting y position for text inside the input box
     
-    setcolor(WHITE); // Change the text color
+    setbkcolor(WHITE);
+    setcolor(BLACK); // Change the text color
     
     settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 2); // Change the text style and size
 

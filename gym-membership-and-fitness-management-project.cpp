@@ -784,7 +784,7 @@ void fitness1(int count, float W)
         const char *db_name = "test_database.db;";
         
         cleardevice(); 
-        drawFitness1();
+        drawDietSuggestion1();
         
 
         //cout << "Day " << count << " Workout Plan:\n\n";
@@ -950,7 +950,7 @@ void fitness2(int count, float W)
 	const char *db_name = "test_database.db;";
 	
 	cleardevice(); 
-    drawFitness1();
+    drawDietSuggestion2();
     
     
 	//cout<<"WORKOUT PLAN FOR MUSCLE BUILDING!!!! \n\n\n";
@@ -1115,7 +1115,7 @@ void fitness3(int count, float W)
 	
 	
 	cleardevice(); 
-    drawFitness1();
+    drawDietSuggestion3();
     
     
        //cout<<"WORKOUT PLAN FOR MAINTAINING FITNESS!!!! \n\n\n";
@@ -1216,19 +1216,20 @@ void fitness()
     
     
 	cleardevice(); 
-	drawDietSuggestion();
+	drawFitnessPage();
 	
-	handleDietSuggestion(click_x, click_y); 
+
+	c = handleFitnessPage2(click_x, click_y); 
+	 
 	
-	strncpy(DAY_count, DAYcount.c_str(), sizeof(DAY_count) - 1);
-    DAY_count[sizeof(DAY_count) - 1] = '\0';
 	
-	day_count = stringToInt(DAY_count);
 	
-	strncpy(W88, W8.c_str(), sizeof(W88) - 1);
-    W88[sizeof(W88) - 1] = '\0';
 	
-	weight = stringToInt(W88);
+	
+	
+	cleardevice(); 
+	
+	drawFitnessPage2();
 	
 	//cout<<"displaying fitness tips..."<<endl;
 	
@@ -1240,18 +1241,24 @@ void fitness()
     //cin >> weight;
     
     
+    //cleardevice(); 
     
-    cleardevice(); 
+    //drawFitnessPage2(); 
+	
+	handleDietSuggestion(click_x, click_y); 
     
-    drawDietSuggestion2(); 
-    
-    c = handleDietSuggestion2(click_x, click_y); 
-    
-    
-    
-    
-    
-    
+    strncpy(DAY_count, DAYcount.c_str(), sizeof(DAY_count) - 1);
+    DAY_count[sizeof(DAY_count) - 1] = '\0';
+	
+	day_count = stringToInt(DAY_count);
+	
+	strncpy(W88, W8.c_str(), sizeof(W88) - 1);
+    W88[sizeof(W88) - 1] = '\0';
+	
+	weight = stringToInt(W88);
+	
+	
+	
     switch(c)
     {case 1:
     	fitness1(day_count, weight);

@@ -3,7 +3,7 @@
 #include <graphics.h>
 void drawLoginPopup(){ 
 
-	readimagefile("Login_Popup.jpg", 0, 0,1280, 720); 
+	readimagefile("Images/Login_Popup.jpg", 0, 0,1280, 720); 
 
 	setcolor(RED);
 
@@ -19,7 +19,7 @@ void drawLandingPage() {
 
     setcolor(WHITE);
     
-    readimagefile("Landing_Page.jpg", 0, 0, 1280, 720);
+    readimagefile("Images/Landing_Page.jpg", 0, 0, 1280, 720);
     
     
     
@@ -43,7 +43,7 @@ void drawLandingPage() {
 
 void drawLoginForm() {
 	
-    readimagefile("User_Login.jpg", 00, 00, 1280, 720);
+    readimagefile("Images/User_Login.jpg", 00, 00, 1280, 720);
     
     
     
@@ -65,7 +65,7 @@ void drawLoginForm() {
 
 void drawinvalidcred(){ 
 
-readimagefile("invalidcred.jpg", 265, 115, 265+750, 115+490); 
+readimagefile("Images/invalidcred.jpg", 0,0,1280,720); 
 
 
 
@@ -76,7 +76,7 @@ readimagefile("invalidcred.jpg", 265, 115, 265+750, 115+490);
 
 void drawSubscriptionPlan(){ 
 
-readimagefile("4.jpg", 00, 00, 1280, 720);
+readimagefile("Images/Subscription_Plan.jpg", 00, 00, 1280, 720);
 rectangle(221, 642, 560, 683);
 
 rectangle(720, 642, 1059, 683);
@@ -95,7 +95,7 @@ rectangle(720, 642, 1059, 683);
 void drawSignUpPage() 
 {
 	
-    readimagefile("SIGN_UP.jpg", 0, 0, 1280, 720);
+    readimagefile("Images/SIGN_UP.jpg", 0, 0, 1280, 720);
     
     rectangle(208, 286, 208+292, 286+45); 
     
@@ -116,7 +116,7 @@ void drawSignUpPage()
 void drawGymTimeSelect()
 { 
 
-readimagefile("6.jpg", 0,0, 1280, 720); 
+readimagefile("Images/Time_Select.jpg", 0,0, 1280, 720); 
 
 rectangle(355, 269, 548, 462);
 rectangle(355+277, 269, 548+277, 462);
@@ -134,7 +134,7 @@ rectangle(355+277+277, 269+210, 548+277+277, 462+210);
 
 void drawRegistrationThanks(){ 
 
-readimagefile("ThankYou.jpg", 0, 0, 1280, 720); 
+readimagefile("Images/ThankYou.jpg", 0, 0, 1280, 720); 
 
 rectangle( 463, 551, 804, 593);
 }
@@ -144,7 +144,7 @@ rectangle( 463, 551, 804, 593);
 
 void drawUserMenu(){ 
 
-readimagefile("UserMenu.jpg", 0, 0, 1280, 720); 
+readimagefile("Images/UserMenu.jpg", 0, 0, 1280, 720); 
 
 rectangle(139, 252, 139+216 ,252+216);
 rectangle(415, 252, 415+216, 252+216);
@@ -159,7 +159,7 @@ rectangle(867, 627, 867+340, 627+42);
 
 void drawAdminLogin(){ 
 
-readimagefile("ADMIN_LOG.jpg", 0, 0 , 1280, 720); 
+readimagefile("Images/ADMIN_LOG.jpg", 0, 0 , 1280, 720); 
 
 rectangle( 209, 338, 209+292, 338+45);
 
@@ -172,7 +172,7 @@ rectangle( 209, 432, 209+292, 432+45);
 
 void drawAdminMenu(){ 
 
-readimagefile("ADMIN_MENU.jpg",0,0,1280,720); 
+readimagefile("Images/ADMIN_MENU.jpg",0,0,1280,720); 
 
 rectangle( 151, 170, 151+216, 170+216); 
 
@@ -193,16 +193,16 @@ rectangle(833, 605, 833+340, 605+42);
 
 void drawUserEdit(){ 
 
-    readimagefile("USER_EDIT.jpg", 0, 0, 1280, 720); 
+    readimagefile("Images/USER_EDIT.jpg", 0, 0, 1280, 720); 
 
 }
 
 
 //***************************************************************************************
 
-void drawDietSuggestion(){ 
+void drawDietSuggestion1(){ 
     
-    readimagefile("DIET_SUGGESTION_1.jpg", 0,0, 1280, 720); 
+    readimagefile("Images/DIET_SUGGESTION_1.jpg", 0,0, 1280, 720); 
 
 }
 
@@ -210,17 +210,24 @@ void drawDietSuggestion(){
 
 void drawDietSuggestion2(){ 
     
-    readimagefile("DIET_SUGGESTION_2.jpg", 0,0, 1280, 720); 
+    readimagefile("Images/DIET_SUGGESTION_2.jpg", 0,0, 1280, 720); 
 
 }
 
+//***************************************************************************************
+
+void drawDietSuggestion3(){ 
+    
+    readimagefile("Images/DIET_SUGGESTION_3.jpg", 0,0, 1280, 720); 
+
+}
 
 //***************************************************************************************
 
 
 void drawUserRecords(){ 
 
-    readimagefile("USER_RECORDS.jpg", 0, 0, 1280, 720); 
+    readimagefile("Images/USER_RECORDS.jpg", 0, 0, 1280, 720); 
 
 }
 
@@ -230,39 +237,39 @@ void drawUserRecords(){
 
 void drawUserQuit(){ 
 
-    readimagefile("USER_QUIT.jpg", 0, 0, 1280, 720); 
+    readimagefile("Images/USER_QUIT.jpg", 0, 0, 1280, 720); 
 
 }
 
 
 void drawNoUser(){ 
 
-readimagefile("NoUser.jpg",0,0,1280,720); 
+readimagefile("Images/NoUser.jpg",0,0,1280,720); 
 
 }
 
 void drawUserDeleteComplete(){ 
 
-readimagefile("User_Delete.jpg",0,0,1280,720); 
+readimagefile("Images/User_Delete.jpg",0,0,1280,720); 
 
 }
 
 void drawDeleteMemberNum(){ 
 
-readimagefile("DeleteMemberNum.jpg", 0,0, 1280, 720);
+readimagefile("Images/DeleteMemberNum.jpg", 0,0, 1280, 720);
 
 }
 
 void drawAdminEdit(){ 
 
-readimagefile("Admin_Edit.jpg", 0,0,1280,720); 
+readimagefile("Images/Admin_Edit.jpg", 0,0,1280,720); 
 
 
 }
 
 void drawAdminSearch(){ 
 
-readimagefile("Admin_Search.jpg", 0,0,1280,720); 
+readimagefile("Images/Admin_Search.jpg", 0,0,1280,720); 
  
 }
 
@@ -278,10 +285,19 @@ readimagefile("ConnectivityFalse.jpg", 42, 648, 92, 698);
 
 }
 
-void drawFitness1(){ 
+void drawFitnessPage(){ 
 
-readimagefile("Fitness1.jpg", 0, 0, 1280, 720); 
+readimagefile("Images/Fitness_Page.jpg", 0, 0, 1280, 720); 
+
+
 
 }
 
+void drawFitnessPage2(){ 
+
+cleardevice();
+
+readimagefile("Images/Fitness_Page2.jpg", 0, 0, 1280, 720); 
+
+}
 #endif

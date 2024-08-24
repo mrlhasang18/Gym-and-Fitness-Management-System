@@ -38,7 +38,7 @@ while (true) {
 		{
             getmouseclick(WM_LBUTTONDOWN, x, y);
 
-if (isClickInBounds(x, y, 355, 269, 548, 462) )
+if (isClickInBounds(x, y, 361, 274, 361+179, 274+179) )
 {
         cleardevice();
         
@@ -50,7 +50,7 @@ if (isClickInBounds(x, y, 355, 269, 548, 462) )
 
     
 	}
-    else if(isClickInBounds(x, y, 355+277, 269, 548+277, 462))
+    else if(isClickInBounds(x, y, 618, 274, 618+179, 274+179))
 	{
 	 
     cleardevice(); 
@@ -65,7 +65,7 @@ if (isClickInBounds(x, y, 355, 269, 548, 462) )
 	}
 	
 	
-	else if(isClickInBounds(x, y, 355+277+277, 269, 548+277+277, 462))
+	else if(isClickInBounds(x, y, 876, 274, 876+179, 274+179))
 	{
 	 time_slut = 3; 
     cleardevice(); 
@@ -78,7 +78,7 @@ if (isClickInBounds(x, y, 355, 269, 548, 462) )
 	}
 	
 	
-	else if(isClickInBounds(x, y, 355, 269+210, 548, 462+210))
+	else if(isClickInBounds(x, y, 361, 469, 361+179, 469+179))
 	{
 	 
 	 time_slut = 4; 
@@ -91,7 +91,7 @@ if (isClickInBounds(x, y, 355, 269, 548, 462) )
 	
 	}
 	
-	else if(isClickInBounds(x, y, 355+277, 269+210, 548+277, 462+210))
+	else if(isClickInBounds(x, y, 618, 469, 618+179, 469+179))
 	{ 
     time_slut = 5; 
 	cleardevice(); 
@@ -103,7 +103,7 @@ if (isClickInBounds(x, y, 355, 269, 548, 462) )
 	
 	}
 	
-	else if(isClickInBounds(x, y, 355+277+277, 269+210, 548+277+277, 462+210))
+	else if(isClickInBounds(x, y, 876, 469, 876+179, 469+179))
 	{ 
     time_slut = 6; 
 	cleardevice(); 
@@ -598,10 +598,10 @@ captureWeightInput(622, 378, 622+188, 378+53, W8);
 
 //*****************************************************************************************************
 
-int handleDietSuggestion2(int x, int y)
+int handleFitnessPage2(int x, int y)
 { 
 
-	while (true) {
+while (true) {
         if (ismouseclick(WM_LBUTTONDOWN)) 
 		{
             getmouseclick(WM_LBUTTONDOWN, x, y);
