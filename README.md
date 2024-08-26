@@ -4,3 +4,12 @@ This is the consoled based system build using C++ aiming to help different Gyms 
 Membership operation hereby mean creating, deleting, updating, viewing user accounts as user itself and admin. Here, admin has access over users' account. User can access fitness suggestion based on the parameter like: weight, day, and purpose(weight loss, muscle building, maintaining the current physique).
 
 This project work is submitted in partial fulfillment of requirements for the award of the degree of Bachelor of Engineering in Computer Engineering (Third Semester).
+
+# Team members:
+- Ashutosh Dhungana
+
+- Lhasang Tulku Lama
+
+- Salin Bade
+
+- Sampada Shrestha
