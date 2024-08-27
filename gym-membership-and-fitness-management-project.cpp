@@ -485,7 +485,7 @@ class gymmember: public user
     }
    void edit_member()
     {
-    	int num;
+    	int num, click_x, click_y;
     	char ch = 'T'; // intilized
     	system("cls");
     	
@@ -516,8 +516,10 @@ class gymmember: public user
     	}
         //fp.close();
         if(ch == 'T')
-            cout<<"record not found\n";// 
-
+            {
+            drawNoRecords(); 
+			handleEntireScreenClick(click_x, click_y); 
+			}
     	fflush(stdin);
     }
    
@@ -537,6 +539,7 @@ class admin: public user
     }
     void show_all()
     {
+    	int click_x, click_y;
     	system("cls");
     	bool found=false;
     	//cout<<endl<<"\t\tRECORDS...";
@@ -550,7 +553,8 @@ class admin: public user
     	fp.close();
     	if(found == false)
     	{
-		cout<<"\n\nNo record found";
+		drawNoRecords(); 
+		handleEntireScreenClick(click_x, click_y); 
 		} 
 		
     	//cout<<"\npress any key to continue";
@@ -590,7 +594,10 @@ class admin: public user
     	}
     	fp.close();
     	if(found == false)
-    	cout<<"\n\nNo record found";
+    	{
+    	drawNoRecords(); 
+		handleEntireScreenClick(click_x, click_y); 		
+		}
     	
     	//cout<<"press any key to continue\n";
     	//getch();
@@ -644,7 +651,8 @@ class admin: public user
     	rename("timro.bin","hamro.bin");
     	
     	drawUserDeleteComplete(); 
-    	delay(1000);
+    	//drawNoRecords(); 
+		handleEntireScreenClick(click_x, click_y); 
     	
     	//cout<<endl<<endl<<"\tRecord Deleted..."; 
         }
@@ -670,7 +678,6 @@ class admin: public user
     	rename("timro.bin","hamro.bin");
 
         //cout<<"press any key to continue\n";
-    	getch();
         }
     }
    void edit_member()
@@ -722,8 +729,11 @@ class admin: public user
     	}
         //fp.close();
         if(ch == 'T')
-            cout<<"record not found\n";// 
-
+          {  
+		  //cout<<"record not found\n";// 
+			drawNoRecords(); 
+			handleEntireScreenClick(click_x, click_y); 
+			}
     	fflush(stdin);
     }
 
@@ -847,8 +857,10 @@ void fitness1(int count, float W)
 
         if(count == 4|| count == 11 || count == 18 || count == 25)
         {
-        cout<<"Day: "<<count<<" Rest\n\n";
-        cout<<"Rest: where strength finds its quiet power.\n";
+        //cout<<"Day: "<<count<<" Rest\n\n";
+        //cout<<"Rest: where strength finds its quiet power.\n";
+        
+        outtextxy(90, 200, "Rest: where strength finds its quiet power.");
         }
 
         if(count == 5|| count == 12|| count == 19 || count == 26 )
@@ -888,8 +900,11 @@ void fitness1(int count, float W)
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
         {
-        cout<<"Day: "<<count<<" Rest\n\n";
-        cout<<"Rest: where strength finds its quiet power.\n";
+        //cout<<"Day: "<<count<<" Rest\n\n";
+        //cout<<"Rest: where strength finds its quiet power.\n";
+        
+        outtextxy(90, 200, "Rest: where strength finds its quiet power.");
+       
         }
 
         //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
@@ -1055,8 +1070,10 @@ void fitness2(int count, float W)
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
         {
-         cout<<"Day: "<<count<<" Rest\n\n";
-        cout<<"Use this day for rest and recovery to prepare for the next cycle.\n";
+        //cout<<"Day: "<<count<<" Rest\n\n";
+        //cout<<"Use this day for rest and recovery to prepare for the next cycle.\n";
+        outtextxy(90, 200, "Use this day for complete rest and recovery");
+        outtextxy(90, 225, "to prepare for the next cycle.");
         }
         
         //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
@@ -1085,7 +1102,7 @@ void diet3(float W)
         setcolor(BLACK);
         
         
-         outtextxy(445, 600, (char *)CAL_str.c_str());
+        outtextxy(445, 600, (char *)CAL_str.c_str());
         outtextxy(445, 652, (char *)P_str.c_str());
         outtextxy(858, 600, (char *)C_str.c_str());
         outtextxy(858, 652, (char *)F_str.c_str());
@@ -1193,8 +1210,10 @@ void fitness3(int count, float W)
         
         if(count == 7|| count == 14 || count == 21 || count == 28 )
         {
-         cout<<"Day: "<<count<<" Rest\n\n";
-        cout<<"Use this day for complete rest and recovery to allow your body to recuperate.\n";
+        //cout<<"Day: "<<count<<" Rest\n\n";
+        //cout<<"Use this day for complete rest and recovery to allow your body to recuperate.\n";
+         outtextxy(90, 200, "Use this day for complete rest and ");
+         outtextxy(90, 235, "recovery to allow your boidy to recupearate.");
         }
         
         //cout << "\n\n\nDay " << count << " Diet Plan:\n\n";
@@ -1496,12 +1515,13 @@ int main() {
 			if (k == 1) {
 				fnmanage();
 			} else {
-				cout << "You cannot access managerial details!";
-				cout << "\t\tPress any key to continue";
-				getch();
+				
+				drawAdminInvalid(); 
+				handleEntireScreenClick(x, y);
+				
 			}
 
-		} else if (i == 3) {  // Exit
+		} else if (i == 30) {  // Exit
 			closegraph();
 			exit(0);  // Exit the program
 		} else {

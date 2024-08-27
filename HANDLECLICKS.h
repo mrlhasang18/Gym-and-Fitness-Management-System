@@ -232,9 +232,9 @@ int handleLandingPageClick(int x, int y)
 				        //cleardevice();
 				        return 20;
 				    } 
-					if (isClickInBounds(x, y, 200, 400, 400, 430)) {
-				        closegraph();
-				        exit(0);
+					if (isClickInBounds(x, y, 1182, 17, 1182+61, 17+66)) {
+				        
+				        return 30;
 				    }
     
 	
@@ -583,7 +583,7 @@ captureDayCountInput(636, 294, 633+165, 292+51, DAYcount);
 	
 	else if(isClickInBounds(x, y, 622, 378, 622+188, 378+53)){ 
 	
-captureWeightInput(622, 378, 622+188, 378+53, W8);
+captureWeightInput(625, 378, 625+130, 378+53, W8);
 
 	
 	}
